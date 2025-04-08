@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+	--font-inter: "Inter", sans-serif;
+	--font-poppins: "Poppins", sans-serif;
+
+	--color-beam-300: #d9d8d5;
+	--color-beam-500: #8c8c89;
+	--color-beam-700: #595957;
+	--color-beam-800: #3b3a39;
+	--color-beam-1000: #0d0d0c;
+	--color-beam-yellow: #ffde02;
+	--color-beam-blue: #1f3d99;
+	--color-beam-separator:#D5D5D5;
+
+	--color-gray-icons-normal: #6d6d6d;
+	--color-gray-50: #8c8c89;
+	--color-gray-900: #101828;
+
+	--color-neutral-800: #474d66;
+	--color-neutral-300:#E6E8F0;
+	--color-neutral-border-normal: #d8dae5;
+	--color-neutral-border-active: #5e5204;
+	--color-neutral-text: #474d66;
+	--color-neutral-headlines: #101840;
+
+	--color-solid-bg: #0c110d;
+}
+
+* {
+	@apply font-inter;
+}
