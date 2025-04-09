@@ -18,10 +18,10 @@ export const TransactionSection = () => {
 	});
 
 	useEffect(() => {
-		if (!data?.success) {
+		if (!isLoading && !data?.success && data?.message) {
 			toast.error(data?.message);
 		}
-	}, [data?.message, data?.success]);
+	}, [data?.message, data?.success, isLoading]);
 
 	const columns: ColumnDef<ITransactionResponse>[] = [
 		{
@@ -86,8 +86,8 @@ export const TransactionSection = () => {
 				Transaction History
 			</h1>
 
-			<div className="flex lg:pl-10 justify-between space-x-4 mt-5">
-				<div className="flex items-center gap-[6px]">
+			<div className="flex lg:pl-10 flex-col lg:flex-row justify-between gap-4 mt-5">
+				<div className="flex  items-center gap-[6px]">
 					<Button variant="ghost" size="sm" className="w-[92px]" disabled>
 						3 years
 					</Button>

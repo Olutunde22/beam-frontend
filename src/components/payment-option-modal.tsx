@@ -27,7 +27,7 @@ export default function PaymentOptionModal({
 	};
 
 	const handleContinue = () => {
-		onOkay(selectedOption);
+		onOkay?.(selectedOption);
 		onClose();
 	};
 	return (
@@ -39,9 +39,9 @@ export default function PaymentOptionModal({
 			<div className="fixed inset-0 flex w-screen items-center justify-center">
 				<DialogPanel
 					transition
-					className="max-w-[500px] w-full space-y-4 drop-shadow-2xl pt-6 pb-4 bg-white rounded-[20px]"
+					className="max-w-[90%] md:max-w-[500px] w-full space-y-4 drop-shadow-2xl pt-6 pb-4 bg-white rounded-[20px]"
 				>
-					<DialogTitle className="font-semibold flex items-center justify-between px-4 text-neutral-headlines text-2xl">
+					<DialogTitle className="font-semibold flex items-center justify-between px-4 text-neutral-headlines text-lg lg:text-2xl">
 						Payment Option
 						<XIcon onClick={() => onClose()} className="size-4" />
 					</DialogTitle>
@@ -59,7 +59,7 @@ export default function PaymentOptionModal({
 						>
 							<div className="flex w-full items-center flex-1 space-x-4">
 								<VueSaxBank className="size-5 text-neutral-headlines" />
-								<span className="text-neutral-text font-semibold">
+								<span className="text-neutral-text text-sm lg:text-base font-semibold">
 									Bank Transfer
 								</span>
 							</div>
@@ -74,7 +74,7 @@ export default function PaymentOptionModal({
 						>
 							<div className="flex w-full items-center flex-1 space-x-4">
 								<VueSaxCard className="size-5 text-neutral-headlines" />
-								<span className="text-neutral-text font-semibold">
+								<span className="text-neutral-text text-sm lg:text-base  font-semibold">
 									Add Debit/Credit Card
 								</span>
 							</div>
@@ -86,7 +86,7 @@ export default function PaymentOptionModal({
 
 					<div className="px-6 flex items-center space-x-4 mt-7">
 						<VueSaxAddCircle className="size-5 text-neutral-headlines" />
-						<p className="text-neutral-text font-semibold">
+						<p className="text-neutral-text text-sm lg:text-base  font-semibold">
 							Add Payment Method
 						</p>
 					</div>

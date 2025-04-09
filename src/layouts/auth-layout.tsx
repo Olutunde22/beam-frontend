@@ -38,8 +38,8 @@ export const AuthLayout = () => {
 					))}
 				</ul>
 			</section>
-			<section className="flex-1 lg:px-[143px] overflow-y-auto">
-				<div className="w-full max-w-[440px]">
+			<section className="flex-1 flex lg:block items-center lg:items-start lg:px-[143px] overflow-y-auto">
+				<div className="w-[90%] mx-auto lg:mx-0 lg:w-full lg:max-w-[440px]">
 					<Outlet />
 				</div>
 			</section>

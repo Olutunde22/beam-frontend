@@ -26,6 +26,7 @@ const appReducer: Reducer = (state: RootState, action: AnyAction) => {
 		// this applies to all keys defined in persistConfig(s)
 		storageSession.removeItem("persist:beam");
 		state = {} as RootState;
+		window.location.href = "/login"
 		if (action.type === "auth/reload") window.location.reload();
 	}
 	return rootReducer(state, action);

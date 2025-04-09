@@ -50,13 +50,13 @@ export function DataTable<TData, TValue>({
 	return (
 		<div
 			className={cn(
-				"flex h-[calc(100vh-450px)] bg-white space-y-4 flex-col justify-between pl-5 rounded-[10px]",
+				"flex h-[calc(100vh-450px)] bg-white space-y-4 flex-col justify-between lg:pl-5 rounded-[10px]",
 				rootClassName
 			)}
 		>
-			<div className={cn("w-full pl-5 overflow-auto", className)}>
+			<div className={cn("w-full lg:pl-5 overflow-auto", className)}>
 				<Table>
-					<TableHeader className={cn("sticky top-0")}>
+					<TableHeader className={cn("sticky bg-white z-10 top-0")}>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {

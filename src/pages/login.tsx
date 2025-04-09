@@ -39,7 +39,7 @@ export const Login = () => {
 	};
 	return (
 		<section className="lg:mt-[156px]">
-			<h1 className="text-beam-1000 text-4xl tracking-[0.5%] font-semibold">
+			<h1 className="text-beam-1000 text-2xl lg:text-4xl tracking-[0.5%] font-semibold">
 				Sign in to Beam.
 			</h1>
 			<p className="mt-3 text-neutral-text leading-[140%]">

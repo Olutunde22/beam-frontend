@@ -13,7 +13,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 		}),
 		register: builder.mutation<IResponse<IUser>, RegisterType>({
 			query: (data) => ({
-				url: "/auth/verify-login",
+				url: "/auth/register",
 				data,
 				method: HTTP.POST,
 			}),

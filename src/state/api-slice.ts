@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { RootState } from "./store";
+import { IErrorResponse } from "@/types/app";
 
 const axiosBaseQuery =
 	(
@@ -49,6 +50,11 @@ const axiosBaseQuery =
 			return { data: result.data };
 		} catch (axiosError) {
 			const err = axiosError as AxiosError;
+			if (
+				!url.includes("auth") &&
+				(err.response?.data as IErrorResponse).statusCode === 401
+			)
+				api.dispatch({ type: "auth/logout" });
 			return {
 				data: err.response?.data,
 			};
@@ -58,5 +64,5 @@ const axiosBaseQuery =
 export const apiSlice = createApi({
 	baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.VITE_BACKEND_API }),
 	endpoints: () => ({}),
-	tagTypes: ['wallet', 'transaction']
+	tagTypes: ["wallet", "transaction"],
 });

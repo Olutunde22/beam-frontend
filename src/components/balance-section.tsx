@@ -22,13 +22,13 @@ export const BalanceSection = () => {
 	const { data, isLoading } = useGetWalletBalanceQuery();
 
 	useEffect(() => {
-		if (!data?.success) {
+		if (!isLoading && !data?.success && data?.message) {
 			toast.error(data?.message);
 		}
-	}, [data?.message, data?.success]);
+	}, [data?.message, data?.success, isLoading]);
 
 	return (
-		<div className="w-full max-w-[369px] font-inter">
+		<div className="w-full lg:max-w-[369px] font-inter">
 			<div className="bg-[#F9F9F7] w-full rounded-[2px]">
 				<p className="mx-5 py-6 flex border-b-[0.5px] border-[#C8D9D1] items-center justify-between text-beam-700 text-xs font-medium">
 					Actual Balance <WalletIcon className="text-beam-1000 size-[19px]" />
@@ -46,7 +46,7 @@ export const BalanceSection = () => {
 								currency: "NGN",
 							}).format(data?.data.balance)}
 							.
-							<span className="text-base text-beam-700 mb-1">
+							<span className="text-base text-beam-700">
 								{data?.data?.balance.toFixed(2).split(".")[1]}
 							</span>
 						</>

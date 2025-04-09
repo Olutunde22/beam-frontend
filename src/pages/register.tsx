@@ -14,7 +14,7 @@ import { toast } from "sonner";
 export const Register = () => {
 	const [isLoading, startTransition] = useTransition();
 	const [registerUser] = useRegisterMutation();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const handleRegister = (
@@ -28,7 +28,7 @@ export const Register = () => {
 					toast.success("Welcome to beam!");
 					resetForm();
 					dispatch(setCredentials({ user: response.data }));
-					navigate("/wallet")
+					navigate("/wallet");
 				} else {
 					toast.error(response.message);
 				}
@@ -39,7 +39,7 @@ export const Register = () => {
 	};
 	return (
 		<section className="lg:mt-[156px]">
-			<h1 className="text-beam-1000 text-4xl tracking-[0.5%] font-semibold">
+			<h1 className="text-beam-1000 text-2xl lg:text-4xl tracking-[0.5%] font-semibold">
 				Create an account
 			</h1>
 			<p className="mt-3 text-neutral-text leading-[140%]">
@@ -108,7 +108,7 @@ export const Register = () => {
 						/>
 					</div>
 
-					<div className="!mt-3 font-normal text-neutral-800 items-center flex gap-3">
+					<div className="!mt-3 !mb-0 font-normal text-neutral-800 items-center flex gap-3">
 						<Field
 							name="agreeToTerms"
 							type="checkbox"
@@ -125,11 +125,16 @@ export const Register = () => {
 							</span>
 						</p>
 					</div>
+					<ErrorMessage
+						component="div"
+						className="text-xs text-red-500"
+						name="agreeToTerms"
+					/>
 
 					<Button
 						loading={isLoading}
 						variant="secondary"
-						className="w-full rounded-[100px]"
+						className="w-full rounded-[100px] mt-6"
 						type="submit"
 					>
 						Register

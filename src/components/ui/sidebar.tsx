@@ -13,9 +13,14 @@ import {
 import { Link, useLocation } from "react-router";
 import { Fragment } from "react/jsx-runtime";
 import ThemeToggle from "../theme-toggle";
+import { useAppDispatch } from "@/state/hook";
+import { logout } from "@/state/slice/auth-slice";
+import { closeSidebar } from "@/state/slice/side-bar-slice";
 
-function Sidebar() {
+function Sidebar({ className }: { className?: string }) {
 	const location = useLocation();
+	const dispatch = useAppDispatch();
+
 	const navSections = [
 		{
 			sectionTitle: "Main",
@@ -68,6 +73,7 @@ function Sidebar() {
 				{
 					title: "Logout",
 					url: "#",
+					onClick: () => dispatch(logout()),
 					icon: <ArrowDownTrayIcon className="size-[18px] rotate-90" />,
 				},
 				{
@@ -79,12 +85,17 @@ function Sidebar() {
 		},
 	];
 	return (
-		<nav className="w-full max-w-[240px] h-full bg-[#0C110D]">
+		<nav
+			className={cn(
+				"w-full flex-col max-w-[240px] h-full bg-[#0C110D]",
+				className
+			)}
+		>
 			<div className="h-16 flex items-center px-10 space-x-2 border-b-[0.5px] border-[#C8CBD9]">
 				<img src="/logo.webp" alt="beam logo" className="size-6" />
 				<span className="text-white text-xs font-bold">BEAM</span>
 			</div>
-			<div className="mt-10 h-[calc(100vh-130px)] flex flex-col justify-between pb-[151px]">
+			<div className="mt-10 flex-1 overflow-y-auto flex flex-col justify-between pb-[151px]">
 				<div className="px-10">
 					{navSections.map((section, index) => (
 						<Fragment key={section.sectionTitle}>
@@ -102,6 +113,10 @@ function Sidebar() {
 														"text-beam-yellow"
 												)}
 												to={link.url}
+												onClick={() => {
+													if (link.onClick) link.onClick();
+													dispatch(closeSidebar());
+												}}
 											>
 												{" "}
 												{link.icon} {link.title}

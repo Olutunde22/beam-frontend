@@ -83,7 +83,7 @@ export default function Pagination({
 	};
 
 	return (
-		<div className="flex mt-2 flex-col sm:flex-row items-center justify-end space-x-6 w-full">
+		<div className="flex mt-2 flex-col sm:flex-row items-center justify-end gap-y-2 gap-x-6 w-full">
 			<span className="text-xs font-medium leading-[145%] text-beam-1000">
 				Page {(currentPage - 1) * pageSize + 1} to {totalPages}
 			</span>

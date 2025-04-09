@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
 				element: <Login />,
 			},
 			{
-				path: "/sign-up",
+				path: "/register",
 				element: <Register />,
 			},
 			{
@@ -31,15 +31,16 @@ export const router = createBrowserRouter([
 		],
 	},
 	{
-		element: (
-			<AuthGuard>
-				<DashboardLayout />
-			</AuthGuard>
-		),
+		element: <AuthGuard />,
 		children: [
 			{
-				path: "/wallet",
-				element: <Wallet />,
+				element: <DashboardLayout />,
+				children: [
+					{
+						path: "/wallet",
+						element: <Wallet />,
+					},
+				],
 			},
 		],
 	},

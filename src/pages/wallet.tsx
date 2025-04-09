@@ -8,13 +8,12 @@ export const Wallet = () => {
 
 			<div className="bg-[#C8CBD9] h-[0.5px] mt-[43px]" />
 
-			<div className="flex mt-10 gap-10">
+			<div className="flex mt-10 flex-col lg:flex-row gap-10">
 				<BalanceSection />
-
 				<TransactionSection />
 			</div>
 
-			<div className="bg-[#C8CBD9] h-[0.5px] mt-[18px]" />
+			<div className="bg-[#C8CBD9] h-[0.5px] mt-[18px] hidden lg:block" />
 		</section>
 	);
 };

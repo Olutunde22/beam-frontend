@@ -54,9 +54,9 @@ export default function WithdrawModal({
 			<div className="fixed inset-0 flex w-screen items-center justify-center">
 				<DialogPanel
 					transition
-					className="max-w-[500px] w-full space-y-4 drop-shadow-2xl pt-6 pb-4 bg-white rounded-[20px]"
+				className="max-w-[90%] md:max-w-[500px]  w-full space-y-4 drop-shadow-2xl pt-6 pb-4 bg-white rounded-[20px]"
 				>
-					<DialogTitle className="font-semibold !mb-[10px] flex items-center justify-between px-4 text-neutral-headlines text-2xl">
+					<DialogTitle className="font-semibold !mb-[10px] flex items-center justify-between px-4 text-neutral-headlines text-lg lg:text-2xl">
 						Withdraw Amount
 					</DialogTitle>
 					<p className="px-4">Please confirm the amount</p>
