@@ -3,24 +3,61 @@ import { DataTable } from "./data-table";
 import { Button } from "./ui/button";
 import Select from "./ui/select";
 import { format } from "date-fns";
+import { ITransactionResponse } from "@/types/app";
+import { useListTransactionsQuery } from "@/state/api/transaction-api-slice";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import StatusIndicator from "./status-indicator";
 
 export const TransactionSection = () => {
-	const columns: ColumnDef<any>[] = [
+	const [pageSize] = useState(50);
+	const [pageNumber, setPageNumber] = useState(1);
+	const { isLoading, data } = useListTransactionsQuery({
+		page: pageNumber,
+		limit: pageSize,
+	});
+
+	useEffect(() => {
+		if (!data?.success) {
+			toast.error(data?.message);
+		}
+	}, [data?.message, data?.success]);
+
+	const columns: ColumnDef<ITransactionResponse>[] = [
 		{
 			header: "Transaction ID",
-			accessorKey: "transactionId",
+			accessorKey: "id",
 		},
 		{
 			header: "Transaction Type",
-			accessorKey: "transactionType",
+			accessorKey: "type",
+			cell: ({ row }) => (
+				<span className="capitalize">{row.original.type}</span>
+			),
+		},
+		{
+			header: "Credit/Debit",
+			accessorKey: "direction",
+			cell: ({ row }) => (
+				<span className="capitalize">{row.original.direction}</span>
+			),
 		},
 		{
 			header: "Amount (₦)",
 			accessorKey: "amount",
+			cell: ({ row }) => (
+				<span>
+					{new Intl.NumberFormat("en-NG", {
+						style: "currency",
+						currency: "NGN",
+					}).format(row.original.amount)}
+				</span>
+			),
 		},
 		{
 			header: "Status",
 			accessorKey: "status",
+			cell: ({ row }) => <StatusIndicator status={row.original.status} />,
 		},
 		{
 			header: "Date",
@@ -31,7 +68,16 @@ export const TransactionSection = () => {
 		},
 		{
 			header: "Action",
-			id: "status",
+			cell: () => (
+				<Button
+					disabled
+					variant="ghost"
+					className="h-[30px] text-[11px] w-[60px]"
+					size="sm"
+				>
+					View
+				</Button>
+			),
 		},
 	];
 	return (
@@ -80,7 +126,16 @@ export const TransactionSection = () => {
 				</div>
 			</div>
 
-			<DataTable rootClassName="mt-5" columns={columns} data={[]} />
+			<DataTable
+				pageSize={pageSize}
+				currentPage={pageNumber}
+				onPageChange={(page) => setPageNumber(page)}
+				totalPages={data?.data?.totalPages}
+				isLoading={isLoading}
+				rootClassName="mt-5"
+				columns={columns}
+				data={data?.data.data}
+			/>
 		</div>
 	);
 };

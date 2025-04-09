@@ -6,8 +6,10 @@ import {
 	MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import NotificationIcon from "@/assets/icons/notification";
+import { useAppSelector } from "@/state/hook";
 
 export const DashboardLayout = () => {
+	const user = useAppSelector((state) => state.auth.user);
 	return (
 		<main className="h-screen w-screen flex ">
 			<Sidebar />
@@ -22,9 +24,9 @@ export const DashboardLayout = () => {
 
 					<div className="flex items-center ">
 						<span className="bg-[#FFE6CC] size-[30px] text-xs text-[#1F384C] flex items-center justify-center rounded-full font-semibold">
-							M
+							{user?.fullName.charAt(0)}
 						</span>
-						<p className="text-beam-1000 text-xs ml-3">Magnartis LTD</p>
+						<p className="text-beam-1000 text-xs ml-3">{user?.fullName}</p>
 						<ChevronDownIcon className="text-[#1F384C] size-3 ml-3" />
 						<div className="relative ml-[30px]">
 							<NotificationIcon className="text-[#B0C3CC]" />

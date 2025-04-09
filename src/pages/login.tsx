@@ -1,16 +1,41 @@
 import { Button } from "@/components/ui/button";
 import { Input, InputPassword } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { loginSchema } from "@/lib/schemas";
-import { Formik, Field, ErrorMessage, Form } from "formik";
+import { loginSchema, LoginType } from "@/lib/schemas";
+import { useLoginMutation } from "@/state/api/auth-api-slice";
+import { useAppDispatch } from "@/state/hook";
+import { setCredentials } from "@/state/slice/auth-slice";
+import { IErrorResponse } from "@/types/app";
+import { Formik, Field, ErrorMessage, Form, FormikHelpers } from "formik";
 import { useTransition } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 export const Login = () => {
 	const [isLoading, startTransition] = useTransition();
+	const [loginUser] = useLoginMutation();
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 
-	const handleLogin = () => {
-		startTransition(async () => {});
+	const handleLogin = (
+		values: LoginType,
+		{ resetForm }: FormikHelpers<LoginType>
+	) => {
+		startTransition(async () => {
+			try {
+				const response = await loginUser(values).unwrap();
+				if (response.success) {
+					toast.success("Welcome back!");
+					resetForm();
+					dispatch(setCredentials({ user: response.data }));
+					navigate("/wallet");
+				} else {
+					toast.error(response.message);
+				}
+			} catch (err) {
+				toast.error((err as IErrorResponse).message);
+			}
+		});
 	};
 	return (
 		<section className="lg:mt-[156px]">
@@ -30,7 +55,12 @@ export const Login = () => {
 						<Label className="mb-[10px]" htmlFor="email">
 							Email Address
 						</Label>
-						<Field placeholder="Enter your email" name="email" type="email" as={Input} />
+						<Field
+							placeholder="Enter your email"
+							name="email"
+							type="email"
+							as={Input}
+						/>
 						<ErrorMessage
 							component="span"
 							className="text-xs text-red-500"
@@ -42,7 +72,11 @@ export const Login = () => {
 						<Label className="mb-[10px]" htmlFor="password">
 							Password
 						</Label>
-						<Field placeholder="Enter your password" name="password" as={InputPassword} />
+						<Field
+							placeholder="Enter your password"
+							name="password"
+							as={InputPassword}
+						/>
 						<ErrorMessage
 							component="span"
 							className="text-xs text-red-500"

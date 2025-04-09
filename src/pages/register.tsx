@@ -1,16 +1,41 @@
 import { Button } from "@/components/ui/button";
 import { Input, InputPassword } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { registerSchema } from "@/lib/schemas";
-import { Formik, Field, ErrorMessage, Form } from "formik";
+import { registerSchema, RegisterType } from "@/lib/schemas";
+import { useRegisterMutation } from "@/state/api/auth-api-slice";
+import { useAppDispatch } from "@/state/hook";
+import { setCredentials } from "@/state/slice/auth-slice";
+import { IErrorResponse } from "@/types/app";
+import { Formik, Field, ErrorMessage, Form, FormikHelpers } from "formik";
 import { useTransition } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
-export const Signup = () => {
+export const Register = () => {
 	const [isLoading, startTransition] = useTransition();
+	const [registerUser] = useRegisterMutation();
+	const navigate = useNavigate()
+	const dispatch = useAppDispatch();
 
-	const handleSignUp = () => {
-		startTransition(async () => {});
+	const handleRegister = (
+		values: RegisterType,
+		{ resetForm }: FormikHelpers<RegisterType>
+	) => {
+		startTransition(async () => {
+			try {
+				const response = await registerUser(values).unwrap();
+				if (response.success) {
+					toast.success("Welcome to beam!");
+					resetForm();
+					dispatch(setCredentials({ user: response.data }));
+					navigate("/wallet")
+				} else {
+					toast.error(response.message);
+				}
+			} catch (err) {
+				toast.error((err as IErrorResponse).message);
+			}
+		});
 	};
 	return (
 		<section className="lg:mt-[156px]">
@@ -31,7 +56,7 @@ export const Signup = () => {
 					agreeToTerms: false,
 				}}
 				validationSchema={registerSchema}
-				onSubmit={handleSignUp}
+				onSubmit={handleRegister}
 			>
 				<Form className="mt-8 space-y-6">
 					<div>
