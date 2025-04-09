@@ -18,8 +18,11 @@ export const registerSchema = yup.object().shape({
 		.required("Email is required"),
 	password: yup
 		.string()
-		.min(8, "Password must be at least 8 characters")
-		.required("Password is required"),
+		.required("Password is required")
+		.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
+			message:
+				"Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character",
+		}),
 	agreeToTerms: yup
 		.boolean()
 		.oneOf([true], "You must agree to the terms and conditions")
