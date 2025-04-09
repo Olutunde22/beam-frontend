@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+Beam Frontend Mini Fintech app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Tech Stack
 
-Currently, two official plugins are available:
+- **React** – Fast and flexible JavaScript library for building UIs.
+- **TypeScript** – Typed JavaScript to help reduce runtime errors and improve developer experience.
+- **Vite** – Lightning-fast build tool and dev server.
+- **Tailwind CSS** – Utility-first CSS framework for rapid UI development.
+- **Headless UI (React)** – Unstyled, accessible UI primitives.
+- **Redux Toolkit** – Simplified and scalable global state management.
+- **Axios** – Promise-based HTTP client for API requests.
+- **Yup & Formik** – Schema-based form validation and management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Installation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/olutunde22/beam-frontend.git
+cd beam-frontend
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command      | Description                 |
+| ------------ | --------------------------- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build for production        |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Lint the codebase           |
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🧠 Folder Structure (Overview)
+
+```
+beam-frontend/
+├── src/
+│   ├── assets/        # Static files like images, icons, etc.
+│   ├── components/    # Reusable UI components
+│   ├── guards/        # Route guards and access control
+│   ├── hooks/         # Custom React hooks
+│   ├── layouts/       # Layout components for pages
+│   ├── lib/           # Utility libraries and helper functions
+│   ├── pages/         # Application route pages
+│   ├── state/         # Redux slices and state management
+│   ├── types/         # TypeScript type definitions
+│   └── ...
+├── public/
+├── package.json
+└── vite.config.ts
 ```
