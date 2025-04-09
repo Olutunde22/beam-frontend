@@ -1,12 +1,16 @@
 import { Link } from "react-router";
 
-export const NotFound = () => {
+interface IProps {
+	message?: string;
+}
+
+export default function ErrorFallback({ message }: IProps) {
 	return (
 		<div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center px-4">
-			<h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>
-			<h2 className="text-2xl font-semibold mb-2">Page Not Found</h2>
+			<h1 className="text-6xl font-bold text-red-500 mb-4">500</h1>
+			<h2 className="text-2xl font-semibold mb-2">Something went wrong!</h2>
 			<p className="text-gray-600 mb-6">
-				Sorry, the page you are looking for does not exist.
+				Something broke on our end : {message}.
 			</p>
 			<Link
 				to="/login"
@@ -16,4 +20,4 @@ export const NotFound = () => {
 			</Link>
 		</div>
 	);
-};
+}

@@ -4,9 +4,9 @@ import { Login } from "./pages/login";
 import { NotFound } from "./pages/not-found";
 import { ForgotPassword } from "./pages/forgot-password";
 import { DashboardLayout } from "./layouts/dashboard-layout";
-import { Wallet } from "./pages/wallet";
 import { Register } from "./pages/register";
 import AuthGuard from "./guards/auth.guard";
+import ErrorBoundary from "./components/error-boundary";
 
 export const router = createBrowserRouter([
 	{
@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
 				element: <ForgotPassword />,
 			},
 		],
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		element: <AuthGuard />,
@@ -38,11 +39,12 @@ export const router = createBrowserRouter([
 				children: [
 					{
 						path: "/wallet",
-						element: <Wallet />,
+						lazy:() => import("./pages/wallet")
 					},
 				],
 			},
 		],
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		path: "*",
