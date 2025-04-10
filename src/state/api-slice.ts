@@ -38,7 +38,6 @@ const axiosBaseQuery =
 				Authorization: `Bearer ${state.auth.user?.accessToken}`,
 			};
 		}
-
 		try {
 			const result = await axios({
 				url: baseUrl + url,
@@ -47,6 +46,7 @@ const axiosBaseQuery =
 				params,
 				headers,
 			});
+
 			return { data: result.data };
 		} catch (axiosError) {
 			const err = axiosError as AxiosError;

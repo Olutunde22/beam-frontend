@@ -134,7 +134,7 @@ export const TransactionSection = () => {
 				isLoading={isLoading}
 				rootClassName="mt-5"
 				columns={columns}
-				data={data?.data.data}
+				data={data?.data ? data?.data.data : []}
 			/>
 		</div>
 	);

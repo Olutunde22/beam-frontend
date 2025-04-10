@@ -57,7 +57,7 @@ export default function TransferModal({
 					className="max-w-[90%] md:max-w-[500px]  w-full space-y-4 drop-shadow-2xl pt-6 pb-4 bg-white rounded-[20px]"
 				>
 					<DialogTitle className="font-semibold !mb-[10px] flex items-center justify-between px-4 text-neutral-headlines text-lg lg:text-2xl">
-						Withdraw Amount
+						Amount to send
 					</DialogTitle>
 					<p className="px-4">Please confirm the amount</p>
 					<div className="w-full h-[0.5px] bg-[#E6E8F0]" />
@@ -131,7 +131,7 @@ export default function TransferModal({
 								size="lg"
 								className="w-full font-semibold mt-[67px]"
 							>
-								Transfer
+								Transfer Funds
 							</Button>
 						</Form>
 					</Formik>

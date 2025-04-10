@@ -64,7 +64,7 @@ export const Register = () => {
 							Full name
 						</Label>
 						<Field
-							placeholder="Enter first name"
+							placeholder="Enter your full name"
 							name="fullName"
 							type="text"
 							as={Input}

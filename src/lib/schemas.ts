@@ -11,7 +11,7 @@ export const loginSchema = yup.object().shape({
 
 export type RegisterType = yup.InferType<typeof registerSchema>;
 export const registerSchema = yup.object().shape({
-	fullName: yup.string().required("First name is required"),
+	fullName: yup.string().required("Full name is required"),
 	email: yup
 		.string()
 		.email("Invalid email address")

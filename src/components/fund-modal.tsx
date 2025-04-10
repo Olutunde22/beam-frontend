@@ -76,7 +76,7 @@ export default function FundModal({
 									Amount
 								</Label>
 								<Field
-									placeholder="Enter your card number"
+									placeholder="Enter the amount you want to add"
 									name="amount"
 									className="border-[#D8DAE5] h-[65px] text-sm text-neutral-text placeholder:text-[#696F8C] font-medium"
 									type="number"
